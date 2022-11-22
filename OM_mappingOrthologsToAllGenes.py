@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 ################################################################
-# Orthology mapping-
+# Orthology mapping- for all genes using orthologer output
 #
 # (c) Hasiba Asma July 2020
 
 ################################################################
 
+#python OM_mappingOrthologsToAllGenes.py -ft GCF_000001215.4_Release_6_plus_ISO1_MT_feature_table.txt -sp1id c.lec_final_mapping.gff -spec Clect -mD DMEL_PROTEIN.fs.maptxt -mX C.lectularius_protein.fs.maptxt -og mydata.og_map 
+
+###
 
 import os
 import sys
