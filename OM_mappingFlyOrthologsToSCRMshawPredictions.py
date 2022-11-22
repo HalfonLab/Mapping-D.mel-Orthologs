@@ -5,7 +5,9 @@
 # (c) Hasiba Asma July 2020
 
 ################################################################
+#python OM_mappingFlyOrthologsToSCRMshawPredictions.py -ft GCF_000001215.4_Release_6_plus_ISO1_MT_feature_table.txt -mD DMEL_PROTEIN.fs.maptxt -mX C.lectularius_protein.fs.maptxt -og mydata.og_map -sp1id c.lec_final_mapping.gff -so scrmshawOutput_peaksCalled_allMethods_all48sets_Clectularious.bed 
 
+#######
 
 import os
 import sys
