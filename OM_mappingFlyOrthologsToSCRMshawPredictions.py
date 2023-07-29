@@ -216,8 +216,10 @@ def main():
 
 								# print('Found it0')
 								break
-							elif c == 1:
+						if c == 0:
 								print(gbid, 'not in dictionary')
+								gbidX = 'No_OrthoPara'
+
 
 					# if no mapping found
 					else:
@@ -323,7 +325,11 @@ def main():
 										break
 								if c == 0:
 									print(dict_sp1id[genes1[i]], 'not in dictionary')
-									#gbidX=gbidX+'No_OrthoPara'
+									if gbidX  !='No_OrthoPara,':
+										gbidX = gbidX + str(',No_OrthoPara')
+									elif gbidX  =='No_OrthoPara,':
+										gbidX='No_OrthoPara'
+
 
 									# if last gene is not mapped then have to do symbol work for prev ones
 									# work on symbols
@@ -360,8 +366,8 @@ def main():
 												commas += 1
 
 									# uptil here symbol work
-									gbid = gbid + ',No_OrthoPara'
-									gbidX = gbidX + ',No_OrthoPara'
+									#gbid = gbid + ',No_OrthoPara'
+									#gbidX = gbidX + ',No_OrthoPara'
 #try this to seee if it fixes problem with --first id good , second not mapped
 							else:
 									gbidXSymbList = gbidX.split(',')
@@ -517,8 +523,9 @@ def main():
 								# oneI=''
 
 								break
-							elif c == 1:
+						if c == 0:
 								print(gbid, 'not in dictionary')
+								gbidX = 'No_OrthoPara'
 					else:
 						gbid = 'No_ID_mapped'
 						gbidX = 'No_ID_mapped'
@@ -550,8 +557,9 @@ def main():
 										commas += 1
 								# oneI=''
 								break
-							elif c == 1:
+						if c == 0:
 								print(gbid2, 'not in dictionary')
+								gbidX2 = 'No_OrthoPara'
 
 					else:
 						gbid2 = 'No_ID_mapped'
@@ -613,8 +621,9 @@ def main():
 										gbidX = gbidX + str(diction2[key][dict_sp1id[genes1[i]]]) + ','
 
 										break
-									elif c == 1:
+								if c == 0:
 										print(dict_sp1id[genes1[i]], 'not in dictionary')
+										gbidX = 'No_OrthoPara,'
 
 							else:
 								gbid = 'No_ID_mapped'
@@ -673,8 +682,11 @@ def main():
 
 										# uptil here symbol work
 										break
-									elif c == 1:
+								if c == 0	:
 										print(dict_sp1id[genes1[i]], 'not in dictionary')
+										if gbidX != 'No_OrthoPara,':
+											gbidX = gbidX + str(',No_OrthoPara')
+
 							else:
 								# this is the last one, here gbidx is at its final round
 								# work on symbols
@@ -758,8 +770,9 @@ def main():
 											commas += 1
 
 								break
-							elif c == 1:
+						if c == 0:
 								print(gbid2, 'not in dictionary')
+								gbidX2 = 'No_OrthoPara'
 
 					else:
 						gbid2 = 'No_ID_mapped'
@@ -868,8 +881,9 @@ def main():
 											commas += 1
 
 								break
-							elif c == 1:
+						if c == 0:
 								print(gbid, 'not in dictionary')
+								gbidX = 'No_OrthoPara'
 					else:
 						gbid = 'No_ID_mapped'
 						gbidX = 'No_ID_mapped'
@@ -885,13 +899,14 @@ def main():
 										c = 1
 										# print('Found it5a')
 										# gbidX2.append(diction2[key][dict_sp1id[genes2[i]]])
-										gbidX2 = gbidX2 + ','.join(diction2[key][dict_sp1id[genes2[i]]])
+										gbidX2 = gbidX2 + ','.join(diction2[key][dict_sp1id[genes2[i]]])+','
 
 
 
 										break
-									elif c == 1:
+								if c == 0:
 										print(dict_sp1id[genes2[i]], 'not in dictionary')
+										gbidX2 = 'No_OrthoPara,'
 
 							else:
 								gbid2 = 'No_ID_mapped'
@@ -905,8 +920,10 @@ def main():
 									if dict_sp1id[genes2[i]] in diction2[key]:
 										c = 1
 										# print('Found it5b')
-										gbidX2 = gbidX2 +',' +str(diction2[key][dict_sp1id[genes2[i]]])
-
+										if gbidX2  !='No_OrthoPara,':
+											gbidX2 = gbidX2 +',' +str(diction2[key][dict_sp1id[genes2[i]]])
+										elif gbidX2 == 'No_OrthoPara,':
+											gbidX2 = gbidX2+str(diction2[key][dict_sp1id[genes2[i]]])
 										# check it out
 										# this is the last one, here gbidx is at its final round
 										# work on symbols
@@ -925,37 +942,41 @@ def main():
 											for item in gbidX2SymbList:
 												item = item.replace('"', '').replace('\'', '').replace('[', '').replace(
 													']', '').replace('\\', '').replace(' ', '')
-												if item in dict_spDid:
-													if dict_spDid[item] not in oneIList:
-														oneIList.append(dict_spDid[item])
-													# if commas == 0:
-													#	oneI = oneI + dict_spDid[item]
+												if item != '':
+													if item in dict_spDid:
+														if dict_spDid[item] not in oneIList:
+															oneIList.append(dict_spDid[item])
+														# if commas == 0:
+														#	oneI = oneI + dict_spDid[item]
 
-													#	else:
-													#		oneI = oneI + ',' + dict_spDid[item]
+														#	else:
+														#		oneI = oneI + ',' + dict_spDid[item]
 
-													if commas == len(gbidX2SymbList) - 1:
-														#	gbidX = oneI
-														gbidX2 = ",".join(map(str, oneIList))
-													commas += 1
+														if commas == len([item for item in gbidX2SymbList if item]) - 1:
+															#	gbidX = oneI
+															gbidX2 = ",".join(map(str, oneIList))
+														commas += 1
 												# if no symbol
-												else:
-													if item not in oneIList:
-														oneIList.append(item)
-													#	if commas == 0:
-													#		oneI = oneI + item
-													#	else:
-													#		oneI = oneI + ',' + item
-													if commas == len(gbidX2SymbList) - 1:
-														#	gbidX = oneI
-														gbidX2 = ",".join(map(str, oneIList))
-													commas += 1
+													else:
+														if item not in oneIList:
+															oneIList.append(item)
+														#	if commas == 0:
+														#		oneI = oneI + item
+														#	else:
+														#		oneI = oneI + ',' + item
+														if commas == len([item for item in gbidX2SymbList if item]) - 1:
+															#	gbidX = oneI
+															gbidX2 = ",".join(map(str, oneIList))
+														commas += 1
 
 										# uptil here symbol work
 										break
 								if c == 0:
 									print(dict_sp1id[genes2[i]], 'not in dictionary')
-									gbidX2 = gbidX2 + str(',No_OrthoPara')
+									if gbidX2  !='No_OrthoPara,':
+										gbidX2 = gbidX2 + str(',No_OrthoPara')
+									elif gbidX2  =='No_OrthoPara,':
+										gbidX2='No_OrthoPara'
 									# since second gene did not have any orthopara mapped you need to do symbol thing for first genes NP ids
 									# this is the last one, here gbidx is at its final round
 									# work on symbols
@@ -974,35 +995,38 @@ def main():
 										for item in gbidX2SymbList:
 											item = item.replace('"', '').replace('\'', '').replace('[', '').replace(
 												']', '').replace('\\', '').replace(' ', '')
-											if item in dict_spDid:
-												if dict_spDid[item] not in oneIList:
-													oneIList.append(dict_spDid[item])
-												# if commas == 0:
-												#	oneI = oneI + dict_spDid[item]
+											if item != '':
+												if item in dict_spDid:
+													if dict_spDid[item] not in oneIList:
+														oneIList.append(dict_spDid[item])
+													# if commas == 0:
+													#	oneI = oneI + dict_spDid[item]
 
-												#	else:
-												#		oneI = oneI + ',' + dict_spDid[item]
+													#	else:
+													#		oneI = oneI + ',' + dict_spDid[item]
 
-												if commas == len(gbidX2SymbList) - 1:
-													#	gbidX = oneI
-													gbidX2 = ",".join(map(str, oneIList))
-												commas += 1
-											# if no symbol
-											else:
-												if item not in oneIList:
-													oneIList.append(item)
-												#	if commas == 0:
-												#		oneI = oneI + item
-												#	else:
-												#		oneI = oneI + ',' + item
-												if commas == len(gbidX2SymbList) - 1:
-													#	gbidX = oneI
-													gbidX2 = ",".join(map(str, oneIList))
-												commas += 1
+													if commas == len([item for item in gbidX2SymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX2 = ",".join(map(str, oneIList))
+													commas += 1
+												# if no symbol
+												else:
+													if item not in oneIList:
+														oneIList.append(item)
+													#	if commas == 0:
+													#		oneI = oneI + item
+													#	else:
+													#		oneI = oneI + ',' + item
+													if commas == len([item for item in gbidX2SymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX2 = ",".join(map(str, oneIList))
+													commas += 1
 
 							# uptil here symbol work
 
 							else:
+								gbid2 = gbid2+',No_ID_mapped'
+								gbidX2 = gbidX2+',No_ID_mapped'
 								# check it out
 								# this is the last one, here gbidx is at its final round
 								# work on symbols
@@ -1022,23 +1046,24 @@ def main():
 										item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																												'').replace(
 											'\\', '').replace(' ', '')
-										if item in dict_spDid:
-											if dict_spDid[item] not in oneIList:
-												oneIList.append(dict_spDid[item])
-											# if commas == 0:
-											#	oneI = oneI + dict_spDid[item]
+										if item !='':
+											if item in dict_spDid:
+												if dict_spDid[item] not in oneIList:
+													oneIList.append(dict_spDid[item])
+												# if commas == 0:
+												#	oneI = oneI + dict_spDid[item]
 
-											#	else:
-											#		oneI = oneI + ',' + dict_spDid[item]
+												#	else:
+												#		oneI = oneI + ',' + dict_spDid[item]
 
-											if commas == len(gbidX2SymbList) - 1:
-												#	gbidX = oneI
-												gbidX2 = ",".join(map(str, oneIList))
-											commas += 1
-										# if no symbol
-										else:
-											if item not in oneIList:
-												oneIList.append(item)
+												if commas == len(gbidX2SymbList) - 1:
+													#	gbidX = oneI
+													gbidX2 = ",".join(map(str, oneIList))
+												commas += 1
+											# if no symbol
+											else:
+												if item not in oneIList:
+													oneIList.append(item)
 											#	if commas == 0:
 											#		oneI = oneI + item
 											#	else:
@@ -1049,8 +1074,8 @@ def main():
 											commas += 1
 
 								# uptil here symbol work
-								gbid2 = gbid2 + ',No_ID_mapped'
-								gbidX2 = gbidX2 + ',No_ID_mapped'
+								#gbid2 = gbid2 + ',No_ID_mapped'
+								#gbidX2 = gbidX2 + ',No_ID_mapped'
 					print(gbidX, gbidX2)
 					if (gbidX != '' and gbidX != '[]' and gbidX2 != '' and gbidX2 != '[]'):
 						fo.write(cols[0] + '\t' + cols[1] + '\t' + cols[2] + '\t' + cols[3] + '\t' + cols[4] + '\t' + cols[
@@ -1122,11 +1147,15 @@ def main():
 										# print('Found it6')
 										gbidX = gbidX + str(diction2[key][dict_sp1id[genes1[i]]]) + ','
 										break
-									elif c == 1:
+								if c == 0:
 										print(dict_sp1id[genes1[i]], 'not in dictionary')
+										gbidX = 'No_OrthoPara,'
+							#		else:
+
 							else:
 								gbid = 'No_ID_mapped'
 								gbidX2 = 'No_ID_mapped'
+						#last gene in the column
 						elif i == len(genes1) - 1:
 							if genes1[i] in dict_sp1id:
 								gbid = gbid + dict_sp1id[genes1[i]]
@@ -1141,11 +1170,17 @@ def main():
 										# work on symbols
 										gbidXSymbList = gbidX.split(',')
 										if len(gbidXSymbList) == 1:
+
 											for item in gbidXSymbList:
-												if item in dict_spDid:  # check if this NP in feature table > if so > write symbol else no symbol found thus orig NP id
-													gbidX = dict_spDid[item]
-												else:
-													gbidX = item
+												item = item.replace('"', '').replace('\'', '').replace('[', '').replace(
+													']',
+													'').replace(
+													'\\', '').replace(' ', '')
+												if item != '':
+													if item in dict_spDid:  # check if this NP in feature table > if so > write symbol else no symbol found thus orig NP id
+														gbidX = dict_spDid[item]
+													else:
+														gbidX = item
 										# print('FOUND item yay ',dict_spDid[item])
 										elif len(gbidXSymbList) > 1:
 											oneI = ''
@@ -1155,36 +1190,41 @@ def main():
 												item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																														'').replace(
 													'\\', '').replace(' ', '')
-												if item in dict_spDid:
-													if dict_spDid[item] not in oneIList:
-														oneIList.append(dict_spDid[item])
-													# if commas == 0:
-													#	oneI = oneI + dict_spDid[item]
+												if item != '':
+													if item in dict_spDid:
+														if dict_spDid[item] not in oneIList:
+															oneIList.append(dict_spDid[item])
+														# if commas == 0:
+														#	oneI = oneI + dict_spDid[item]
 
-													#	else:
-													#		oneI = oneI + ',' + dict_spDid[item]
+														#	else:
+														#		oneI = oneI + ',' + dict_spDid[item]
 
-													if commas == len(gbidXSymbList) - 1:
-														#	gbidX = oneI
-														gbidX = ",".join(map(str, oneIList))
-													commas += 1
-												# if no symbol
-												else:
-													if item not in oneIList:
-														oneIList.append(item)
-													#	if commas == 0:
-													#		oneI = oneI + item
-													#	else:
-													#		oneI = oneI + ',' + item
-													if commas == len(gbidXSymbList) - 1:
-														#	gbidX = oneI
-														gbidX = ",".join(map(str, oneIList))
-													commas += 1
+														if commas == len(gbidXSymbList) - 1:
+															#	gbidX = oneI
+															gbidX = ",".join(map(str, oneIList))
+														commas += 1
+													# if no symbol
+													else:
+														if item not in oneIList:
+															oneIList.append(item)
+														#	if commas == 0:
+														#		oneI = oneI + item
+														#	else:
+														#		oneI = oneI + ',' + item
+														if commas == len(gbidXSymbList) - 1:
+															#	gbidX = oneI
+															gbidX = ",".join(map(str, oneIList))
+														commas += 1
 
 										# uptil here symbol work
 										break
 								if c == 0:
 									print(dict_sp1id[genes1[i]], 'not in dictionary')
+									if gbidX != 'No_OrthoPara,':
+										gbidX = gbidX + str(',No_OrthoPara')
+									elif gbidX == 'No_OrthoPara,':
+										gbidX = 'No_OrthoPara'
 									# work on symbols
 									gbidXSymbList = gbidX.split(',')
 									if len(gbidXSymbList) == 1:
@@ -1232,53 +1272,53 @@ def main():
 										# uptil here symbol work
 									gbid = gbid + ',No_OrthoPara'
 									gbidX = gbidX + ',No_OrthoPara'
-							# else:
-							# 	# work on symbols
-							# 	gbidXSymbList = gbidX.split(',')
-							# 	if len(gbidXSymbList) == 1:
-							# 		for item in gbidXSymbList:
-							# 			if item in dict_spDid:  # check if this NP in feature table > if so > write symbol else no symbol found thus orig NP id
-							# 				gbidX = dict_spDid[item]
-							# 			else:
-							# 				gbidX = item
-							# 	# print('FOUND item yay ',dict_spDid[item])
-							# 	elif len(gbidXSymbList) > 1:
-							# 		oneI = ''
-							# 		oneIList = []
-							# 		commas = 0
-							# 		for item in gbidXSymbList:
-							# 			item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
-							# 																					'').replace(
-							# 				'\\', '').replace(' ', '')
-							# 			if item in dict_spDid:
-							# 				if dict_spDid[item] not in oneIList:
-							# 					oneIList.append(dict_spDid[item])
-							# 				# if commas == 0:
-							# 				#	oneI = oneI + dict_spDid[item]
-							#
-							# 				#	else:
-							# 				#		oneI = oneI + ',' + dict_spDid[item]
-							#
-							# 				if commas == len(gbidXSymbList) - 1:
-							# 					#	gbidX = oneI
-							# 					gbidX = ",".join(map(str, oneIList))
-							# 				commas += 1
-							# 			# if no symbol
-							# 			else:
-							# 				if item not in oneIList:
-							# 					oneIList.append(item)
-							# 				#	if commas == 0:
-							# 				#		oneI = oneI + item
-							# 				#	else:
-							# 				#		oneI = oneI + ',' + item
-							# 				if commas == len(gbidXSymbList) - 1:
-							# 					#	gbidX = oneI
-							# 					gbidX = ",".join(map(str, oneIList))
-							# 				commas += 1
-							#
-							# 	# uptil here symbol work
-							# 	gbid = gbid + ',No_ID_mapped'
-							# 	gbidX = gbidX + ',No_ID_mapped'
+							else:
+								# work on symbols
+								gbidXSymbList = gbidX.split(',')
+								if len(gbidXSymbList) == 1:
+									for item in gbidXSymbList:
+										if item in dict_spDid:  # check if this NP in feature table > if so > write symbol else no symbol found thus orig NP id
+											gbidX = dict_spDid[item]
+										else:
+											gbidX = item
+								# print('FOUND item yay ',dict_spDid[item])
+								elif len(gbidXSymbList) > 1:
+									oneI = ''
+									oneIList = []
+									commas = 0
+									for item in gbidXSymbList:
+										item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
+																												'').replace(
+											'\\', '').replace(' ', '')
+										if item in dict_spDid:
+											if dict_spDid[item] not in oneIList:
+												oneIList.append(dict_spDid[item])
+											# if commas == 0:
+											#	oneI = oneI + dict_spDid[item]
+
+											#	else:
+											#		oneI = oneI + ',' + dict_spDid[item]
+
+											if commas == len(gbidXSymbList) - 1:
+												#	gbidX = oneI
+												gbidX = ",".join(map(str, oneIList))
+											commas += 1
+										# if no symbol
+										else:
+											if item not in oneIList:
+												oneIList.append(item)
+											#	if commas == 0:
+											#		oneI = oneI + item
+											#	else:
+											#		oneI = oneI + ',' + item
+											if commas == len(gbidXSymbList) - 1:
+												#	gbidX = oneI
+												gbidX = ",".join(map(str, oneIList))
+											commas += 1
+
+								# uptil here symbol work
+								gbid = gbid + ',No_ID_mapped'
+								gbidX = gbidX + ',No_ID_mapped'
 					genes2 = cols[10].split(',')
 					for i in range(0, len(genes2)):
 						if i < len(genes2) - 1:#first
@@ -1291,8 +1331,9 @@ def main():
 										# print('Found it6b')
 										gbidX2 = gbidX2 + str(diction2[key][dict_sp1id[genes2[i]]])+','
 										break
-									elif c == 1:
+								if c == 0:
 										print(dict_sp1id[genes2[i]], 'not in dictionary')
+										gbidX2 = 'No_OrthoPara,'
 
 							else:
 								gbid2 = 'No_ID_mapped'
@@ -1355,8 +1396,14 @@ def main():
 										break
 								if c == 0:
 									print(dict_sp1id[genes2[i]], 'not in dictionary')
+									#gbidX2 = gbidX2 + str(',No_OrthoPara')
+									if gbidX2  !='No_OrthoPara,':
+										gbidX2 = gbidX2 + str(',No_OrthoPara')
+									elif gbidX2  =='No_OrthoPara,':
+										gbidX2='No_OrthoPara'
+
 							 #	   print(dict_sp1id[genes2[i]], 'not in dictionary')
-									gbidX2 = gbidX2 + str(',No_OrthoPara')
+									#gbidX2 = gbidX2 + str(',No_OrthoPara')
 									# since second gene did not have any orthopara mapped you need to do symbol thing for first genes NP ids
 									# this is the last one, here gbidx is at its final round
 									# work on symbols
