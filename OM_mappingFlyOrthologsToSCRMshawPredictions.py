@@ -657,31 +657,32 @@ def main():
 											for item in gbidXSymbList:
 												item = item.replace('"', '').replace('\'', '').replace('[', '').replace(
 													']', '').replace('\\', '').replace(' ', '')
-												if item in dict_spDid:
-													if dict_spDid[item] not in oneIList:
-														oneIList.append(dict_spDid[item])
-													# if commas == 0:
-													#	oneI = oneI + dict_spDid[item]
+												if item != '':
+													if item in dict_spDid:
+														if dict_spDid[item] not in oneIList:
+															oneIList.append(dict_spDid[item])
+														# if commas == 0:
+														#	oneI = oneI + dict_spDid[item]
 
-													#	else:
-													#		oneI = oneI + ',' + dict_spDid[item]
+														#	else:
+														#		oneI = oneI + ',' + dict_spDid[item]
 
-													if commas == len(gbidXSymbList) - 1:
-														#	gbidX = oneI
-														gbidX = ",".join(map(str, oneIList))
-													commas += 1
-												# if no symbol
-												else:
-													if item not in oneIList:
-														oneIList.append(item)
-													#	if commas == 0:
-													#		oneI = oneI + item
-													#	else:
-													#		oneI = oneI + ',' + item
-													if commas == len(gbidXSymbList) - 1:
-														#	gbidX = oneI
-														gbidX = ",".join(map(str, oneIList))
-													commas += 1
+														if commas == len([item for item in gbidXSymbList if item]) - 1:
+															#	gbidX = oneI
+															gbidX = ",".join(map(str, oneIList))
+														commas += 1
+													# if no symbol
+													else:
+														if item not in oneIList:
+															oneIList.append(item)
+														#	if commas == 0:
+														#		oneI = oneI + item
+														#	else:
+														#		oneI = oneI + ',' + item
+														if commas == len([item for item in gbidXSymbList if item]) - 1:
+															#	gbidX = oneI
+															gbidX = ",".join(map(str, oneIList))
+														commas += 1
 
 										# uptil here symbol work
 										break
@@ -1158,7 +1159,7 @@ def main():
 
 							else:
 								gbid = 'No_ID_mapped'
-								gbidX2 = 'No_ID_mapped'
+								gbidX = 'No_ID_mapped'
 						#last gene in the column
 						elif i == len(genes1) - 1:
 							if genes1[i] in dict_sp1id:
@@ -1204,7 +1205,7 @@ def main():
 														#	else:
 														#		oneI = oneI + ',' + dict_spDid[item]
 
-														if commas == len(gbidXSymbList) - 1:
+														if commas == len([item for item in gbidXSymbList if item]) - 1:
 															#	gbidX = oneI
 															gbidX = ",".join(map(str, oneIList))
 														commas += 1
@@ -1216,7 +1217,7 @@ def main():
 														#		oneI = oneI + item
 														#	else:
 														#		oneI = oneI + ',' + item
-														if commas == len(gbidXSymbList) - 1:
+														if commas == len([item for item in gbidXSymbList if item]) - 1:
 															#	gbidX = oneI
 															gbidX = ",".join(map(str, oneIList))
 														commas += 1
@@ -1247,31 +1248,32 @@ def main():
 												']',
 												'').replace(
 												'\\', '').replace(' ', '')
-											if item in dict_spDid:
-												if dict_spDid[item] not in oneIList:
-													oneIList.append(dict_spDid[item])
-												# if commas == 0:
-													#	oneI = oneI + dict_spDid[item]
+											if item != '':
+												if item in dict_spDid:
+													if dict_spDid[item] not in oneIList:
+														oneIList.append(dict_spDid[item])
+													# if commas == 0:
+														#	oneI = oneI + dict_spDid[item]
 
-													#	else:
-													#		oneI = oneI + ',' + dict_spDid[item]
+														#	else:
+														#		oneI = oneI + ',' + dict_spDid[item]
 
-												if commas == len(gbidXSymbList) - 1:
-												#	gbidX = oneI
-													gbidX = ",".join(map(str, oneIList))
-												commas += 1
-												# if no symbol
-											else:
-												if item not in oneIList:
-													oneIList.append(item)
-												#	if commas == 0:
-												#		oneI = oneI + item
-												#	else:
-												#		oneI = oneI + ',' + item
-												if commas == len(gbidXSymbList) - 1:
+													if commas == len([item for item in gbidXSymbList if item]) - 1:
 													#	gbidX = oneI
-													gbidX = ",".join(map(str, oneIList))
-												commas += 1
+														gbidX = ",".join(map(str, oneIList))
+													commas += 1
+													# if no symbol
+												else:
+													if item not in oneIList:
+														oneIList.append(item)
+													#	if commas == 0:
+													#		oneI = oneI + item
+													#	else:
+													#		oneI = oneI + ',' + item
+													if commas == len([item for item in gbidXSymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX = ",".join(map(str, oneIList))
+													commas += 1
 
 										# uptil here symbol work
 									gbid = gbid + ',No_OrthoPara'
@@ -1294,31 +1296,32 @@ def main():
 										item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																												'').replace(
 											'\\', '').replace(' ', '')
-										if item in dict_spDid:
-											if dict_spDid[item] not in oneIList:
-												oneIList.append(dict_spDid[item])
-											# if commas == 0:
-											#	oneI = oneI + dict_spDid[item]
+										if item != '':
+											if item in dict_spDid:
+												if dict_spDid[item] not in oneIList:
+													oneIList.append(dict_spDid[item])
+												# if commas == 0:
+												#	oneI = oneI + dict_spDid[item]
 
-											#	else:
-											#		oneI = oneI + ',' + dict_spDid[item]
+												#	else:
+												#		oneI = oneI + ',' + dict_spDid[item]
 
-											if commas == len(gbidXSymbList) - 1:
-												#	gbidX = oneI
-												gbidX = ",".join(map(str, oneIList))
-											commas += 1
-										# if no symbol
-										else:
-											if item not in oneIList:
-												oneIList.append(item)
-											#	if commas == 0:
-											#		oneI = oneI + item
-											#	else:
-											#		oneI = oneI + ',' + item
-											if commas == len(gbidXSymbList) - 1:
-												#	gbidX = oneI
-												gbidX = ",".join(map(str, oneIList))
-											commas += 1
+												if commas == len([item for item in gbidXSymbList if item]) - 1:
+													#	gbidX = oneI
+													gbidX = ",".join(map(str, oneIList))
+												commas += 1
+											# if no symbol
+											else:
+												if item not in oneIList:
+													oneIList.append(item)
+												#	if commas == 0:
+												#		oneI = oneI + item
+												#	else:
+												#		oneI = oneI + ',' + item
+												if commas == len([item for item in gbidXSymbList if item]) - 1:
+													#	gbidX = oneI
+													gbidX = ",".join(map(str, oneIList))
+												commas += 1
 
 								# uptil here symbol work
 								gbid = gbid + ',No_ID_mapped'
@@ -1370,31 +1373,32 @@ def main():
 												item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																														'').replace(
 													'\\', '').replace(' ', '')
-												if item in dict_spDid:
-													if dict_spDid[item] not in oneIList:
-														oneIList.append(dict_spDid[item])
-													# if commas == 0:
-													#	oneI = oneI + dict_spDid[item]
+												if item != '':
+														if item in dict_spDid:
+															if dict_spDid[item] not in oneIList:
+																oneIList.append(dict_spDid[item])
+															# if commas == 0:
+															#	oneI = oneI + dict_spDid[item]
 
-													#	else:
-													#		oneI = oneI + ',' + dict_spDid[item]
+															#	else:
+															#		oneI = oneI + ',' + dict_spDid[item]
 
-													if commas == len(gbidX2SymbList) - 1:
-														#	gbidX = oneI
-														gbidX2 = ",".join(map(str, oneIList))
-													commas += 1
-												# if no symbol
-												else:
-													if item not in oneIList:
-														oneIList.append(item)
-													#	if commas == 0:
-													#		oneI = oneI + item
-													#	else:
-													#		oneI = oneI + ',' + item
-													if commas == len(gbidX2SymbList) - 1:
-														#	gbidX = oneI
-														gbidX2 = ",".join(map(str, oneIList))
-													commas += 1
+															if commas == len([item for item in gbidX2SymbList if item]) - 1:
+																#	gbidX = oneI
+																gbidX2 = ",".join(map(str, oneIList))
+															commas += 1
+														# if no symbol
+														else:
+															if item not in oneIList:
+																oneIList.append(item)
+															#	if commas == 0:
+															#		oneI = oneI + item
+															#	else:
+															#		oneI = oneI + ',' + item
+															if commas == len([item for item in gbidX2SymbList if item]) - 1:
+																#	gbidX = oneI
+																gbidX2 = ",".join(map(str, oneIList))
+															commas += 1
 
 										# uptil here symbol work
 										break
@@ -1426,31 +1430,32 @@ def main():
 										for item in gbidX2SymbList:
 											item = item.replace('"', '').replace('\'', '').replace('[', '').replace(
 												']', '').replace('\\', '').replace(' ', '')
-											if item in dict_spDid:
-												if dict_spDid[item] not in oneIList:
-													oneIList.append(dict_spDid[item])
-												# if commas == 0:
-												#	oneI = oneI + dict_spDid[item]
+											if item != '':
+												if item in dict_spDid:
+													if dict_spDid[item] not in oneIList:
+														oneIList.append(dict_spDid[item])
+													# if commas == 0:
+													#	oneI = oneI + dict_spDid[item]
 
-												#	else:
-												#		oneI = oneI + ',' + dict_spDid[item]
+													#	else:
+													#		oneI = oneI + ',' + dict_spDid[item]
 
-												if commas == len(gbidX2SymbList) - 1:
-													#	gbidX = oneI
-													gbidX2 = ",".join(map(str, oneIList))
-												commas += 1
-											# if no symbol
-											else:
-												if item not in oneIList:
-													oneIList.append(item)
-												#	if commas == 0:
-												#		oneI = oneI + item
-												#	else:
-												#		oneI = oneI + ',' + item
-												if commas == len(gbidX2SymbList) - 1:
-													#	gbidX = oneI
-													gbidX2 = ",".join(map(str, oneIList))
-												commas += 1
+													if commas == len([item for item in gbidX2SymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX2 = ",".join(map(str, oneIList))
+													commas += 1
+												# if no symbol
+												else:
+													if item not in oneIList:
+														oneIList.append(item)
+													#	if commas == 0:
+													#		oneI = oneI + item
+													#	else:
+													#		oneI = oneI + ',' + item
+													if commas == len([item for item in gbidX2SymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX2 = ",".join(map(str, oneIList))
+													commas += 1
 
 							# uptil here symbol work
 							else:
@@ -1471,31 +1476,32 @@ def main():
 										item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																												'').replace(
 											'\\', '').replace(' ', '')
-										if item in dict_spDid:
-											if dict_spDid[item] not in oneIList:
-												oneIList.append(dict_spDid[item])
-											# if commas == 0:
-											#	oneI = oneI + dict_spDid[item]
+										if item != '':
+											if item in dict_spDid:
+												if dict_spDid[item] not in oneIList:
+													oneIList.append(dict_spDid[item])
+												# if commas == 0:
+												#	oneI = oneI + dict_spDid[item]
 
-											#	else:
-											#		oneI = oneI + ',' + dict_spDid[item]
+												#	else:
+												#		oneI = oneI + ',' + dict_spDid[item]
 
-											if commas == len(gbidX2SymbList) - 1:
-												#	gbidX = oneI
-												gbidX2 = ",".join(map(str, oneIList))
-											commas += 1
-										# if no symbol
-										else:
-											if item not in oneIList:
-												oneIList.append(item)
-											#	if commas == 0:
-											#		oneI = oneI + item
-											#	else:
-											#		oneI = oneI + ',' + item
-											if commas == len(gbidX2SymbList) - 1:
-												#	gbidX = oneI
-												gbidX2 = ",".join(map(str, oneIList))
-											commas += 1
+												if commas == len([item for item in gbidX2SymbList if item]) - 1:
+													#	gbidX = oneI
+													gbidX2 = ",".join(map(str, oneIList))
+												commas += 1
+											# if no symbol
+											else:
+												if item not in oneIList:
+													oneIList.append(item)
+												#	if commas == 0:
+												#		oneI = oneI + item
+												#	else:
+												#		oneI = oneI + ',' + item
+												if commas == len([item for item in gbidX2SymbList if item]) - 1:
+													#	gbidX = oneI
+													gbidX2 = ",".join(map(str, oneIList))
+												commas += 1
 
 								# uptil here symbol work
 								gbid2 = gbid2 + ',No_ID_mapped'
