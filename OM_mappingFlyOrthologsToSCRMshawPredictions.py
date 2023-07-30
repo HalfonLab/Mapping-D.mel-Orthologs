@@ -350,21 +350,22 @@ def main():
 											item = item.replace('"', '').replace('\'', '').replace('[', '').replace(']',
 																													'').replace(
 												'\\', '').replace(' ', '')
-											if item in dict_spDid:
-												if dict_spDid[item] not in oneIList:
-													oneIList.append(dict_spDid[item])
-												if commas == len(gbidXSymbList) - 1:
-													gbidX = ",".join(map(str, oneIList))
-												commas += 1
-											# if no symbol
-											else:
-												if item not in oneIList:
-													oneIList.append(item)
+											if item != '':
+												if item in dict_spDid:
+													if dict_spDid[item] not in oneIList:
+														oneIList.append(dict_spDid[item])
+													if commas == len([item for item in gbidXSymbList if item]) - 1:
+														gbidX = ",".join(map(str, oneIList))
+													commas += 1
+												# if no symbol
+												else:
+													if item not in oneIList:
+														oneIList.append(item)
 
-												if commas == len(gbidXSymbList) - 1:
-													#	gbidX = oneI
-													gbidX = ",".join(map(str, oneIList))
-												commas += 1
+													if commas == len([item for item in gbidXSymbList if item]) - 1:
+														#	gbidX = oneI
+														gbidX = ",".join(map(str, oneIList))
+													commas += 1
 
 									# uptil here symbol work
 									#gbid = gbid + ',No_OrthoPara'
