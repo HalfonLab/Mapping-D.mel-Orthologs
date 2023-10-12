@@ -40,7 +40,7 @@ def mapping(fileName):
 def idMap_dict_FT(nameOfDict, file):
 	with open(file, 'r') as fi:
 		rows = (line.split('\t') for line in fi)
-		nameOfDict = {row[10]: row[14] for row in rows}
+		nameOfDict = {row[10]: row[16].split('_')[1] for row in rows}
 	return (nameOfDict)
 
 
