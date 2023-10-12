@@ -33,8 +33,8 @@ def process_second_file(input_file, output_file, FbgnDict):
 
 def main():
 	fbgn_annotation_file = input("Enter the path to the first file (fbgn_annotation_ID_fb_2023_04.tsv): ")
-	input_file = input("Enter the path to the SCRM file containing CGs(second_file.scrm_3.bed): ")
-	output_file = input("Enter the desired output file name with symbols (output_aceph_symb.scrm.bed): ")
+	input_file = input("Enter the path to the SCRM file containing CGs(output of OM_mappingFlyOrthologsToSCRMshawPredictions.py): ")
+	output_file = input("Enter the desired output file name with symbols: ")
 	
 	FbgnDict = create_FbgnDict(fbgn_annotation_file)
 	process_second_file(input_file, output_file, FbgnDict)
