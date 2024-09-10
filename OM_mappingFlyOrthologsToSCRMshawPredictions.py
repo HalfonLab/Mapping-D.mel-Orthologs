@@ -143,7 +143,7 @@ def main():
 	# need to fix it at some point, exclude anything useless-- op stuff (June 22)
 	with open(scrmshawOutputPath, 'r') as so, open(orthologOutput, 'w') as fo:
 		for line in so:
-			print(line)
+			#c#print(line)
 			cols = line.split('\t')
 
 			# Check col 5 and col 10
@@ -447,7 +447,7 @@ def main():
 								# # uptil here symbol work
 								# gbid = gbid + ',No_ID_mapped'
 								# gbidX = gbidX + ',No_ID_mapped'
-					print(gbid, gbidX)
+					#c#print(gbid, gbidX)
 					if gbidX != '' or gbidX != '[]':
 						fo.write(
 							cols[0] + '\t' + cols[1] + '\t' + cols[2] + '\t' + cols[3] + '\t' + cols[4] + '\t' + cols[
@@ -785,7 +785,7 @@ def main():
 
 					# check if col 10 has ortholog or paralog or both
 					# if (cols[10] in dict_orthologs) and (cols[10] not in dict_paralogs):
-					print(gbidX, gbidX2)
+					#c#print(gbidX, gbidX2)
 					if (gbidX != '' and gbidX != '[]' and gbidX2 != '' and gbidX2 != '[]'):
 						fo.write(
 							cols[0] + '\t' + cols[1] + '\t' + cols[2] + '\t' + cols[3] + '\t' + cols[4] + '\t' + cols[
@@ -1081,7 +1081,7 @@ def main():
 								# uptil here symbol work
 								#gbid2 = gbid2 + ',No_ID_mapped'
 								#gbidX2 = gbidX2 + ',No_ID_mapped'
-					print(gbidX, gbidX2)
+					#c#print(gbidX, gbidX2)
 					if (gbidX != '' and gbidX != '[]' and gbidX2 != '' and gbidX2 != '[]'):
 						fo.write(cols[0] + '\t' + cols[1] + '\t' + cols[2] + '\t' + cols[3] + '\t' + cols[4] + '\t' + cols[
 							5] + '\t' +
